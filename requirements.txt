@@ -21,11 +21,10 @@ cryptography
 geoip2
 google-generativeai
 httpx
-mangum
+mangum==0.19.0
 numpy
 psutil
 pyjwt
 pytest
 redis
 starlette
-mangum==0.19.0
