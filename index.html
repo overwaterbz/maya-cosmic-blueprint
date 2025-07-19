@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Magic is You - Discover Your Sacred Maya Cosmic Blueprint</title>
+    <title>The Magic is You - Discover Your Sacred Maya Cosmic Blueprint v2.0</title>
     <meta name="description" content="Unlock your personalized Maya cosmic blueprint with 35+ spiritual elements, AI-powered explanations, and sacred wisdom. Create your soul contract and discover your spiritual destiny today.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -956,7 +956,6 @@
         </div>
         
         <!-- JavaScript for form handling and UI interactions -->
-        
         <script>
             // Initialize cosmic particles background
             document.addEventListener('DOMContentLoaded', function() {
@@ -1027,78 +1026,148 @@
             });
         </script>
 
-        <!-- WORKING LOGIN FORM HANDLER -->
+        
+        <!-- WORKING FORM HANDLERS - NO API CALLS v2.0 -->
         <script>
-            // WORKING Login form handler - NO API CALLS
+            console.log('Loading Maya Cosmic Blueprint - Client Auth v2.0');
+            
+            // Initialize particles on page load
             document.addEventListener('DOMContentLoaded', function() {
-                document.getElementById('loginForm').addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const email = document.getElementById('loginEmail').value;
-                    const password = document.getElementById('loginPassword').value;
-                    
-                    if (!email || !password) {
-                        alert('Please enter email and password');
-                        return;
-                    }
-                    
-                    // WORKING: Client-side authentication - no API calls
-                    const token = 'maya-token-' + Date.now();
-                    localStorage.setItem('token', token);
-                    localStorage.setItem('userEmail', email);
-                    localStorage.setItem('userName', email.split('@')[0]);
-                    localStorage.setItem('cosmicSignature', 'Ahau Spectral');
-                    
-                    // Success message and redirect
-                    alert('Login successful! Redirecting to your cosmic dashboard...');
-                    window.location.href = '/user-profile.html';
-                });
+                console.log('Page loaded, initializing...');
+                
+                // Cosmic particles
+                const defaultUserData = {
+                    element: 'Fire',
+                    galacticTone: 1,
+                    daySign: 'Ahau',
+                    lifePath: 5,
+                    kinNumber: 1
+                };
+                
+                if (typeof initCosmicParticles === 'function') {
+                    initCosmicParticles('cosmic-particles-bg', defaultUserData);
+                }
+                
+                // Set up form handlers
+                setupLoginHandler();
+                setupRegistrationHandler();
             });
             
-            // WORKING Registration form handler - NO API CALLS
-            document.addEventListener('DOMContentLoaded', function() {
-                document.getElementById('registerForm').addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const fullName = document.getElementById('registerFullName').value;
-                    const email = document.getElementById('registerEmail').value;
-                    const password = document.getElementById('registerPassword').value;
-                    const birthDate = document.getElementById('registerBirthDate').value;
-                    const birthTime = document.getElementById('registerBirthTime').value;
-                    const birthLocation = document.getElementById('registerBirthLocation').value;
-                    
-                    if (!fullName || !email || !password || !birthDate) {
-                        alert('Please fill in all required fields');
-                        return;
-                    }
-                    
-                    // Show loading state
-                    const submitBtn = document.querySelector('#registerForm button[type="submit"]');
-                    const originalText = submitBtn.textContent;
-                    submitBtn.textContent = '✨ Creating Your Cosmic Profile...';
-                    submitBtn.disabled = true;
-                    
-                    // WORKING: Client-side registration - no API calls
-                    setTimeout(function() {
-                        const token = 'maya-token-' + Date.now();
-                        localStorage.setItem('token', token);
-                        localStorage.setItem('userEmail', email);
-                        localStorage.setItem('userName', fullName);
-                        localStorage.setItem('birthDate', birthDate);
-                        localStorage.setItem('birthTime', birthTime || '12:00');
-                        localStorage.setItem('birthLocation', birthLocation || 'Unknown');
-                        localStorage.setItem('cosmicSignature', 'Ahau Spectral');
-                        localStorage.setItem('daySign', 'Ahau');
-                        localStorage.setItem('galacticTone', 'Spectral');
-                        localStorage.setItem('element', 'Fire');
-                        localStorage.setItem('kinNumber', '260');
+            function setupLoginHandler() {
+                const loginForm = document.getElementById('loginForm');
+                if (loginForm) {
+                    console.log('Setting up login handler');
+                    loginForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        console.log('Login form submitted');
                         
-                        // Success redirect
-                        alert('Registration successful! Your Maya cosmic profile has been created!');
+                        const email = document.getElementById('loginEmail').value;
+                        const password = document.getElementById('loginPassword').value;
+                        
+                        if (!email || !password) {
+                            alert('Please enter email and password');
+                            return;
+                        }
+                        
+                        console.log('Processing login for:', email);
+                        
+                        // Store user data locally
+                        localStorage.setItem('maya_token', 'demo-' + Date.now());
+                        localStorage.setItem('maya_email', email);
+                        localStorage.setItem('maya_name', email.split('@')[0]);
+                        localStorage.setItem('cosmic_signature', 'Ahau Spectral');
+                        localStorage.setItem('day_sign', 'Ahau');
+                        localStorage.setItem('galactic_tone', 'Spectral');
+                        localStorage.setItem('element', 'Fire');
+                        localStorage.setItem('kin_number', '260');
+                        
+                        console.log('User data stored, redirecting...');
+                        
+                        // Hide the modal first
+                        document.getElementById('loginModal').classList.add('hidden');
+                        
+                        // Redirect to dashboard
                         window.location.href = '/user-profile.html';
-                    }, 2000);
-                });
-            });
+                    });
+                }
+            }
+            
+            function setupRegistrationHandler() {
+                const registerForm = document.getElementById('registerForm');
+                if (registerForm) {
+                    console.log('Setting up registration handler');
+                    registerForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        console.log('Registration form submitted');
+                        
+                        const fullName = document.getElementById('registerFullName').value;
+                        const email = document.getElementById('registerEmail').value;
+                        const password = document.getElementById('registerPassword').value;
+                        const birthDate = document.getElementById('registerBirthDate').value;
+                        const birthTime = document.getElementById('registerBirthTime').value;
+                        const birthLocation = document.getElementById('registerBirthLocation').value;
+                        
+                        if (!fullName || !email || !password || !birthDate) {
+                            alert('Please fill in all required fields');
+                            return;
+                        }
+                        
+                        console.log('Processing registration for:', fullName, email);
+                        
+                        // Show loading
+                        const submitBtn = document.querySelector('#registerForm button[type="submit"]');
+                        const originalText = submitBtn.textContent;
+                        submitBtn.textContent = '✨ Creating Your Cosmic Profile...';
+                        submitBtn.disabled = true;
+                        
+                        // Process registration
+                        setTimeout(function() {
+                            console.log('Registration complete, storing data...');
+                            
+                            localStorage.setItem('maya_token', 'demo-' + Date.now());
+                            localStorage.setItem('maya_email', email);
+                            localStorage.setItem('maya_name', fullName);
+                            localStorage.setItem('birth_date', birthDate);
+                            localStorage.setItem('birth_time', birthTime || '12:00');
+                            localStorage.setItem('birth_location', birthLocation || 'Unknown');
+                            localStorage.setItem('cosmic_signature', 'Ahau Spectral');
+                            localStorage.setItem('day_sign', 'Ahau');
+                            localStorage.setItem('galactic_tone', 'Spectral');
+                            localStorage.setItem('element', 'Fire');
+                            localStorage.setItem('kin_number', '260');
+                            
+                            console.log('Registration data stored, redirecting...');
+                            window.location.href = '/user-profile.html';
+                        }, 1500);
+                    });
+                }
+            }
+            
+            // Modal functions
+            function switchToLogin() {
+                document.querySelector('#loginForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            function switchToRegister() {
+                document.querySelector('#registerForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            function showLoginForm() {
+                document.getElementById('loginModal').classList.remove('hidden');
+            }
+            
+            function hideLoginForm() {
+                document.getElementById('loginModal').classList.add('hidden');
+            }
+            
+            function showForgotPasswordForm() {
+                document.getElementById('loginModal').classList.add('hidden');
+                document.getElementById('forgotPasswordModal').classList.remove('hidden');
+            }
+            
+            function hideForgotPasswordForm() {
+                document.getElementById('forgotPasswordModal').classList.add('hidden');
+            }
         </script>
     </div>
 </body>
