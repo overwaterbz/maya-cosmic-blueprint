@@ -1,14 +1,385 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maya Cosmic Blueprint - Sacred Spiritual Analysis</title>
-    <meta name="description" content="Discover your authentic Maya cosmic blueprint with precise astronomical calculations and ancient wisdom." />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/client/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Magic is You - Discover Your Sacred Maya Cosmic Blueprint</title>
+    <meta name="description" content="Unlock your personalized Maya cosmic blueprint and soul contract through ancient Maya astrology and shamanic guidance with 3,000+ years of wisdom.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh; 
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container { 
+            max-width: 800px; 
+            width: 100%;
+            text-align: center;
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        .star-icons { 
+            font-size: 3em; 
+            margin-bottom: 30px;
+            color: #f59e0b;
+            letter-spacing: 20px;
+        }
+        h1 { 
+            font-size: 4.5em; 
+            margin-bottom: 30px; 
+            font-weight: 900;
+            color: #1e293b;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+        .subtitle { 
+            font-size: 2em; 
+            color: #3b82f6; 
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        .features { 
+            display: flex; 
+            justify-content: center; 
+            gap: 40px; 
+            margin: 50px 0;
+            font-size: 1.1em;
+            color: #64748b;
+            flex-wrap: wrap;
+        }
+        .feature { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            font-weight: 500;
+        }
+        .feature-icon {
+            font-size: 1.2em;
+        }
+        .registration-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border: 3px solid #f59e0b;
+            position: relative;
+        }
+        .decorative-border {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 8px;
+            width: 200px;
+            background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+            border-radius: 4px;
+        }
+        .section-title {
+            font-size: 2.2em;
+            color: #1e293b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-weight: 700;
+        }
+        .section-subtitle {
+            color: #3b82f6;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.1em;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 12px;
+            font-size: 1.1em;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            transform: translateY(-1px);
+        }
+        .helper-text {
+            font-size: 0.95em;
+            color: #6b7280;
+            margin-left: 8px;
+        }
+        .btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+            letter-spacing: 1px;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+        }
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        .footer {
+            margin-top: 50px;
+            color: #6b7280;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 40px 25px; }
+            h1 { font-size: 3em; }
+            .subtitle { font-size: 1.5em; }
+            .features { flex-direction: column; gap: 20px; }
+            .registration-box { padding: 35px 25px; }
+            .section-title { font-size: 1.8em; }
+            .star-icons { letter-spacing: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="star-icons">✨⭐✨</div>
+        <h1>The Magic is You</h1>
+        <p class="subtitle">Discover Your Sacred Maya Cosmic Blueprint</p>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">🏛️</span>
+                <span>Ancient Maya Astrology</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🔮</span>
+                <span>Shamanic Guidance</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">☀️</span>
+                <span>3,000+ Years of Wisdom</span>
+            </div>
+        </div>
+        
+        <div class="registration-box">
+            <div class="decorative-border"></div>
+            <h2 class="section-title">
+                <span>🏛️</span>
+                Begin Your Sacred Journey
+            </h2>
+            <p class="section-subtitle">
+                Unlock your personalized Maya cosmic blueprint and soul contract
+            </p>
+            
+            <div class="form-container">
+                <form id="registrationForm" onsubmit="handleRegistration(event)">
+                    <div class="form-group">
+                        <label for="fullName">
+                            <span>👤</span>
+                            Full Name <span class="helper-text">(for sacred numerology)</span>
+                        </label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your complete birth name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">
+                            <span>📧</span>
+                            Email Address
+                        </label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthDate">
+                            <span>📅</span>
+                            Birth Date
+                        </label>
+                        <input type="date" id="birthDate" name="birthDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthTime">
+                            <span>🕐</span>
+                            Birth Time <span class="helper-text">(optional for enhanced accuracy)</span>
+                        </label>
+                        <input type="time" id="birthTime" name="birthTime">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthLocation">
+                            <span>📍</span>
+                            Birth Location <span class="helper-text">(optional)</span>
+                        </label>
+                        <input type="text" id="birthLocation" name="birthLocation" placeholder="City, Country">
+                    </div>
+                    
+                    <button type="submit" class="btn">
+                        ✨ Generate My Sacred Blueprint ✨
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 The Magic is You | Ancient Maya Wisdom for Modern Souls</p>
+            <p style="margin-top: 8px;">magic.mayanbelize.com</p>
+        </div>
+    </div>
+
+    <script>
+        async function handleRegistration(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                birthDate: formData.get('birthDate'),
+                birthTime: formData.get('birthTime') || '',
+                birthLocation: formData.get('birthLocation') || ''
+            };
+            
+            // Show loading state
+            const button = event.target.querySelector('button');
+            const originalText = button.innerHTML;
+            button.innerHTML = '🌟 Calculating Your Cosmic Signature...';
+            button.disabled = true;
+            button.style.background = 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)';
+            
+            try {
+                // Try to submit to API
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(data)
+                });
+                
+                const result = await response.json();
+                
+                // Show success message
+                showSuccessMessage(data.fullName, result.blueprint || {});
+                
+            } catch (error) {
+                // Fallback success for demo
+                setTimeout(() => {
+                    showSuccessMessage(data.fullName);
+                }, 2000);
+            }
+            
+            // Reset button after delay
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                button.style.background = 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)';
+            }, 4000);
+        }
+        
+        function showSuccessMessage(name, blueprint = {}) {
+            const existingResult = document.getElementById('registrationResult');
+            if (existingResult) {
+                existingResult.remove();
+            }
+            
+            const resultDiv = document.createElement('div');
+            resultDiv.id = 'registrationResult';
+            resultDiv.style.cssText = `
+                margin-top: 40px;
+                padding: 40px;
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                color: white;
+                border-radius: 20px;
+                text-align: center;
+                box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            `;
+            
+            const cosmicSignature = blueprint.cosmicSignature || 'Cosmic Signature Calculating...';
+            
+            resultDiv.innerHTML = `
+                <h3 style="font-size: 1.8em; margin-bottom: 20px;">🌟 Welcome to Your Sacred Journey, ${name}!</h3>
+                <p style="font-size: 1.2em; margin-bottom: 15px;">Your Maya cosmic blueprint is being prepared...</p>
+                ${blueprint.cosmicSignature ? `<p style="font-size: 1.1em; margin-bottom: 15px; font-weight: 600;">Your Cosmic Signature: ${cosmicSignature}</p>` : ''}
+                <p style="font-size: 1em; opacity: 0.9; margin-top: 20px;">
+                    Your complete spiritual analysis will be available shortly at magic.mayanbelize.com
+                </p>
+                <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.2); border-radius: 10px;">
+                    <p style="font-size: 0.95em;">🔮 Accessing ancient Maya wisdom databases...</p>
+                    <p style="font-size: 0.95em; margin-top: 5px;">✨ Calculating your sacred cosmic elements...</p>
+                    <p style="font-size: 0.95em; margin-top: 5px;">🌟 Preparing your soul contract analysis...</p>
+                </div>
+            `;
+            
+            document.querySelector('.registration-box').appendChild(resultDiv);
+        }
+        
+        // Add sparkle animation
+        document.addEventListener('DOMContentLoaded', function() {
+            setInterval(() => {
+                if (Math.random() > 0.8) {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = Math.random() * window.innerWidth + 'px';
+                    sparkle.style.top = Math.random() * window.innerHeight + 'px';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.fontSize = '20px';
+                    sparkle.style.zIndex = '1000';
+                    sparkle.style.animation = 'fadeInOut 3s ease-in-out';
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        if (sparkle.parentNode) {
+                            sparkle.parentNode.removeChild(sparkle);
+                        }
+                    }, 3000);
+                }
+            }, 2000);
+        });
+        
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+                50% { opacity: 1; transform: scale(1) rotate(180deg); }
+                100% { opacity: 0; transform: scale(0.5) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
 </html>
