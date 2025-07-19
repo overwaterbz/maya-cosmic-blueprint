@@ -14,7 +14,7 @@
   ],
   "functions": {
     "api/index.py": {
-      "memory": 512
+      "memory": 256
     }
   }
 }
