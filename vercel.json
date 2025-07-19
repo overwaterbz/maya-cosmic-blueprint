@@ -4,22 +4,5 @@
     "api/*.js": {
       "runtime": "nodejs18.x"
     }
-  },
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/user-profile",
-      "dest": "/user-profile.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "env": {
-    "JWT_SECRET": "@jwt_secret"
   }
 }
