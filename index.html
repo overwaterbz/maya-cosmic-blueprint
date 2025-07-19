@@ -4,347 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Magic is You - Maya Cosmic Blueprint Platform</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { 
-            font-family: system-ui; 
-            background: linear-gradient(135deg, #fef7ed 0%, #f59e0b 100%); 
-            min-height: 100vh;
-        }
-        .cosmic-card { 
-            background: white; 
-            border-radius: 1rem; 
-            padding: 2rem; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            margin-bottom: 2rem;
-        }
-        .btn-cosmic { 
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed); 
-            color: white; 
-            padding: 1rem 2rem; 
-            border-radius: 0.75rem; 
-            font-weight: 600; 
-            border: none; 
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-cosmic:hover { transform: translateY(-2px); }
-        .btn-maya { 
-            background: linear-gradient(135deg, #f59e0b, #d97706); 
-            color: white; 
-            padding: 1rem 2rem; 
-            border-radius: 0.75rem; 
-            font-weight: 600; 
-            border: none; 
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-maya:hover { transform: translateY(-2px); }
-        .modal { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(0,0,0,0.5); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            z-index: 1000; 
-        }
-        .modal.hidden { display: none; }
-        .form-input { 
-            width: 100%; 
-            padding: 1rem; 
-            border: 2px solid #e5e7eb; 
-            border-radius: 0.75rem; 
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
-        }
-        .element-bubble {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        .element-bubble:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
+        body { font-family: system-ui; background: linear-gradient(135deg, #fef7ed 0%, #f59e0b 100%); min-height: 100vh; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { text-align: center; font-size: 3rem; color: #1f2937; margin-bottom: 2rem; }
+        .login-section { background: #fef3cd; border: 2px solid #f59e0b; border-radius: 12px; padding: 20px; margin-bottom: 30px; text-align: center; }
+        .main-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #374151; }
+        input { width: 100%; padding: 12px; border: 2px solid #d1d5db; border-radius: 8px; font-size: 16px; }
+        button { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 15px 30px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; }
+        button:hover { transform: translateY(-2px); }
+        .elements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0; }
+        .element-card { background: #f3f4f6; padding: 20px; border-radius: 12px; text-align: center; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; }
+        .show { display: flex !important; }
     </style>
 </head>
 <body>
-    <div class="min-h-screen py-8 px-4">
-        <div class="max-w-6xl mx-auto">
-            
-            <!-- Header Section -->
-            <div class="text-center mb-16">
-                <div class="bg-yellow-100 border border-yellow-300 rounded-xl p-6 mb-8 inline-block">
-                    <p class="text-yellow-800 mb-3 text-lg">Already have an account?</p>
-                    <button onclick="showLogin()" class="text-blue-600 hover:text-blue-800 font-bold underline text-lg">
-                        Login to Your Sacred Profile
-                    </button>
-                </div>
-                
-                <h1 class="text-6xl font-bold text-gray-800 mb-6">
-                    🌟 The Magic is You
-                </h1>
-                <h2 class="text-3xl font-semibold text-blue-800 mb-6">
-                    Your Sacred Cosmic Blueprint Awaits
-                </h2>
-                <p class="text-xl text-gray-700 max-w-4xl mx-auto">
-                    Discover your authentic Maya cosmic signature through AI-powered spiritual guidance and ancient astronomical wisdom. Your personalized blueprint reveals your soul's purpose, spiritual gifts, and cosmic alignment.
-                </p>
+    <div class="container">
+        <div class="login-section">
+            <p style="margin-bottom: 10px; color: #92400e;">Already have an account?</p>
+            <button onclick="showLoginModal()" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); width: auto; padding: 10px 20px;">
+                Login to Your Profile
+            </button>
+        </div>
+        
+        <h1>🌟 The Magic is You</h1>
+        <p style="text-align: center; font-size: 1.2rem; color: #4b5563; margin-bottom: 3rem;">
+            Your Sacred Cosmic Blueprint Awaits - Discover your authentic Maya cosmic signature
+        </p>
+        
+        <div class="elements-grid">
+            <div class="element-card">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🔸</div>
+                <h3 style="color: #1e40af;">Day Sign</h3>
+                <p>Your Maya glyph</p>
             </div>
-
-            <!-- Core Maya Elements Preview -->
-            <div class="mb-20">
-                <h2 class="text-5xl font-bold text-center mb-4 text-blue-800">
-                    🔮 Core Maya Elements
-                </h2>
-                <p class="text-center text-xl text-gray-600 mb-12">
-                    35+ cosmic elements calculated from your birth data
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                    <div class="element-bubble">
-                        <div class="text-5xl mb-4">🔸</div>
-                        <h3 class="font-bold text-xl text-blue-800 mb-2">Day Sign</h3>
-                        <p class="text-gray-600">Your Maya solar glyph representing your core essence and spiritual purpose</p>
-                    </div>
-                    <div class="element-bubble">
-                        <div class="text-5xl mb-4">🎵</div>
-                        <h3 class="font-bold text-xl text-blue-800 mb-2">Galactic Tone</h3>
-                        <p class="text-gray-600">Cosmic frequency that shapes your energy pattern and manifestation style</p>
-                    </div>
-                    <div class="element-bubble">
-                        <div class="text-5xl mb-4">🏛️</div>
-                        <h3 class="font-bold text-xl text-blue-800 mb-2">Kin Number</h3>
-                        <p class="text-gray-600">Your unique position in the 260-day Maya sacred calendar cycle</p>
-                    </div>
-                    <div class="element-bubble">
-                        <div class="text-5xl mb-4">🔥</div>
-                        <h3 class="font-bold text-xl text-blue-800 mb-2">Element</h3>
-                        <p class="text-gray-600">Fire, Water, Air, or Earth energy governing your spiritual nature</p>
-                    </div>
-                    <div class="element-bubble">
-                        <div class="text-5xl mb-4">⭐</div>
-                        <h3 class="font-bold text-xl text-blue-800 mb-2">Life Path</h3>
-                        <p class="text-gray-600">Your soul's mission and the gifts you bring to the world</p>
-                    </div>
-                </div>
+            <div class="element-card">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                <h3 style="color: #1e40af;">Galactic Tone</h3>
+                <p>Cosmic frequency</p>
             </div>
-
-            <!-- Additional Elements Preview -->
-            <div class="mb-20">
-                <h2 class="text-4xl font-bold text-center mb-12 text-purple-700">
-                    ✨ Plus 30+ Additional Elements
-                </h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center">
-                    <div class="bg-white p-4 rounded-lg shadow">
-                        <div class="text-3xl mb-2">🐍</div>
-                        <p class="font-semibold text-purple-700">Spirit Animal</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow">
-                        <div class="text-3xl mb-2">💎</div>
-                        <p class="font-semibold text-purple-700">Crystal Ally</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow">
-                        <div class="text-3xl mb-2">🌿</div>
-                        <p class="font-semibold text-purple-700">Plant Medicine</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow">
-                        <div class="text-3xl mb-2">🌙</div>
-                        <p class="font-semibold text-purple-700">Moon Phase</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow">
-                        <div class="text-3xl mb-2">🧘</div>
-                        <p class="font-semibold text-purple-700">Chakra</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow">
-                        <div class="text-3xl mb-2">⚡</div>
-                        <p class="font-semibold text-purple-700">Energy Type</p>
-                    </div>
-                </div>
-                <div class="text-center mt-8">
-                    <p class="text-lg text-gray-600">And many more including Trecena, Wavespell, Maya Cross, Long Count, and spiritual guidance elements!</p>
-                </div>
+            <div class="element-card">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🏛️</div>
+                <h3 style="color: #1e40af;">Kin Number</h3>
+                <p>260-day position</p>
             </div>
-
-            <!-- Registration Form -->
-            <div class="max-w-3xl mx-auto">
-                <div class="cosmic-card">
-                    <h2 class="text-4xl font-bold text-center mb-8 text-orange-600">
-                        🌟 Create Your Sacred Cosmic Profile
-                    </h2>
-                    <p class="text-center text-lg text-gray-600 mb-8">
-                        Enter your birth information to generate your personalized Maya cosmic blueprint
-                    </p>
-                    
-                    <form id="registerForm" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-3">Full Name *</label>
-                                <input type="text" id="fullName" class="form-input" required placeholder="Enter your full name">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-3">Email *</label>
-                                <input type="email" id="email" class="form-input" required placeholder="your@email.com">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-3">Password *</label>
-                                <input type="password" id="password" class="form-input" required placeholder="Create a secure password">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-3">Birth Date *</label>
-                                <input type="date" id="birthDate" class="form-input" required>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-3">Birth Time (Optional for accuracy)</label>
-                                <input type="time" id="birthTime" class="form-input" placeholder="If known">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-3">Birth Location (Optional for accuracy)</label>
-                                <input type="text" id="birthLocation" class="form-input" placeholder="City, Country">
-                            </div>
-                        </div>
-                        
-                        <div class="text-center pt-6">
-                            <button type="submit" class="btn-maya text-xl py-4 px-8">
-                                ✨ Generate My Cosmic Blueprint
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <div class="element-card">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🔥</div>
+                <h3 style="color: #1e40af;">Element</h3>
+                <p>Spiritual energy</p>
+            </div>
+            <div class="element-card">
+                <div style="font-size: 3rem; margin-bottom: 10px;">⭐</div>
+                <h3 style="color: #1e40af;">Life Path</h3>
+                <p>Soul mission</p>
             </div>
         </div>
-    </div>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal hidden">
-        <div class="cosmic-card max-w-lg w-full mx-4">
-            <h2 class="text-3xl font-bold text-center mb-4 text-purple-600">
-                🌟 Welcome Back, Cosmic Soul
-            </h2>
-            <p class="text-center text-gray-600 mb-8 text-lg">
-                Return to your sacred cosmic blueprint and spiritual wisdom
-            </p>
+        
+        <div class="main-content">
+            <h2 style="text-align: center; color: #ea580c; margin-bottom: 30px;">Create Your Sacred Profile</h2>
             
-            <form id="loginForm" class="space-y-6">
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-3">📧 Email Address</label>
-                    <input type="email" id="loginEmail" class="form-input" required placeholder="your@email.com">
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" required>
                 </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-3">🔒 Password</label>
-                    <input type="password" id="loginPassword" class="form-input" required placeholder="Your password">
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label>Birth Date *</label>
+                    <input type="date" id="birthDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Birth Time (Optional)</label>
+                    <input type="time" id="birthTime">
+                </div>
+                <div class="form-group">
+                    <label>Birth Location (Optional)</label>
+                    <input type="text" id="birthLocation" placeholder="City, Country">
                 </div>
                 
-                <button type="submit" class="w-full btn-cosmic py-4 text-lg">
-                    🌟 Access My Cosmic Profile
-                </button>
+                <button type="submit">✨ Create My Cosmic Profile</button>
             </form>
-            
-            <div class="text-center mt-8">
-                <button onclick="hideLogin()" class="text-gray-500 hover:text-gray-700 text-lg">Cancel</button>
-            </div>
         </div>
     </div>
-
+    
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 style="color: #8b5cf6; margin-bottom: 20px;">Welcome Back, Cosmic Soul</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">Login to Your Profile</button>
+            </form>
+            <button onclick="hideLoginModal()" style="background: #6b7280; margin-top: 15px;">Cancel</button>
+        </div>
+    </div>
+    
     <script>
-        console.log('Maya Cosmic Blueprint Platform - BASELINE LOADED');
+        console.log('Maya Platform - WORKING BASELINE LOADED');
         
-        function showLogin() {
-            document.getElementById('loginModal').classList.remove('hidden');
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('show');
         }
         
-        function hideLogin() {
-            document.getElementById('loginModal').classList.add('hidden');
+        function hideLoginModal() {
+            document.getElementById('loginModal').classList.remove('show');
         }
         
-        // Authentication system
-        document.addEventListener('DOMContentLoaded', function() {
+        // Login handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
             
-            // Login form handler  
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const email = document.getElementById('loginEmail').value;
-                const password = document.getElementById('loginPassword').value;
-                
-                if (!email || !password) {
-                    alert('Please enter both email and password');
-                    return;
-                }
-                
-                // Store authentication data
-                localStorage.setItem('maya_authenticated', 'true');
+            if (email && password) {
+                localStorage.setItem('maya_token', 'authenticated-' + Date.now());
                 localStorage.setItem('maya_email', email);
                 localStorage.setItem('maya_name', email.split('@')[0]);
-                localStorage.setItem('maya_login_time', new Date().toISOString());
-                
-                alert('Welcome back! Accessing your cosmic profile...');
-                
-                // Redirect to dashboard (create dashboard.html or use existing)
-                window.location.href = 'user-profile.html';
-            });
+                alert('Login successful! Redirecting to dashboard...');
+                window.location.href = '/user-profile.html';
+            } else {
+                alert('Please enter email and password');
+            }
+        });
+        
+        // Registration handler
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Registration form handler
-            document.getElementById('registerForm').addEventListener('submit', function(e) {
-                e.preventDefault();
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                birthDate: document.getElementById('birthDate').value,
+                birthTime: document.getElementById('birthTime').value,
+                birthLocation: document.getElementById('birthLocation').value
+            };
+            
+            if (!formData.fullName || !formData.email || !formData.password || !formData.birthDate) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            const btn = e.target.querySelector('button');
+            btn.textContent = '✨ Creating Profile...';
+            btn.disabled = true;
+            
+            setTimeout(function() {
+                localStorage.setItem('maya_token', 'registered-' + Date.now());
+                localStorage.setItem('maya_email', formData.email);
+                localStorage.setItem('maya_name', formData.fullName);
+                localStorage.setItem('maya_birth_date', formData.birthDate);
+                localStorage.setItem('maya_birth_time', formData.birthTime);
+                localStorage.setItem('maya_birth_location', formData.birthLocation);
                 
-                const fullName = document.getElementById('fullName').value;
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                const birthDate = document.getElementById('birthDate').value;
-                const birthTime = document.getElementById('birthTime').value;
-                const birthLocation = document.getElementById('birthLocation').value;
-                
-                if (!fullName || !email || !password || !birthDate) {
-                    alert('Please fill in all required fields (marked with *)');
-                    return;
-                }
-                
-                const submitBtn = e.target.querySelector('button[type="submit"]');
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = '✨ Calculating Your Cosmic Blueprint...';
-                submitBtn.disabled = true;
-                
-                // Simulate cosmic blueprint calculation
-                setTimeout(function() {
-                    // Store user data
-                    localStorage.setItem('maya_authenticated', 'true');
-                    localStorage.setItem('maya_email', email);
-                    localStorage.setItem('maya_name', fullName);
-                    localStorage.setItem('maya_birth_date', birthDate);
-                    localStorage.setItem('maya_birth_time', birthTime);
-                    localStorage.setItem('maya_birth_location', birthLocation);
-                    localStorage.setItem('maya_registration_time', new Date().toISOString());
-                    
-                    // Sample cosmic data
-                    localStorage.setItem('maya_day_sign', 'Ahau');
-                    localStorage.setItem('maya_galactic_tone', 'Spectral');
-                    localStorage.setItem('maya_kin_number', '260');
-                    localStorage.setItem('maya_element', 'Fire');
-                    localStorage.setItem('maya_life_path', 'Illuminator');
-                    
-                    alert('🌟 Your cosmic blueprint has been generated! Welcome to your spiritual journey!');
-                    
-                    // Redirect to dashboard
-                    window.location.href = 'user-profile.html';
-                    
-                }, 2000);
-            });
+                alert('Registration successful! Profile created.');
+                window.location.href = '/user-profile.html';
+            }, 1500);
         });
     </script>
 </body>
