@@ -2,8 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/minimal_index.py",
-      "use": "@vercel/python"
+      "src": "public/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
   "routes": [
@@ -12,11 +19,20 @@
       "dest": "/static/$1"
     },
     {
+      "src": "/api/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/api/minimal_index.py"
+      "dest": "/public/index.html"
     }
   ],
   "env": {
     "PYTHONPATH": "/var/task"
+  },
+  "functions": {
+    "api/index.py": {
+      "memory": 512
+    }
   }
 }
