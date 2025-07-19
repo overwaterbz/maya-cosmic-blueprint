@@ -3,201 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌟 The Magic is You - Your Cosmic Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Maya Dashboard - The Magic is You</title>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #fef7ed 0%, #fef3c7 25%, #fde68a 50%, #fbbf24 75%, #f59e0b 100%);
-            color: #1e3a8a;
-            min-height: 100vh;
-        }
-        .cosmic-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1.5rem;
-        }
-        .element-bubble {
-            background: #F9FAFB;
-            border: 1px solid #E5E7EB;
-            border-radius: 1rem;
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .element-bubble:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        body { font-family: system-ui; background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%); min-height: 100vh; margin: 0; padding: 20px; color: white; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .dashboard-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 30px; margin-bottom: 30px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .feature-card { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: transform 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); }
+        button { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-7xl mx-auto">
-            <!-- Header -->
-            <div class="cosmic-card text-center">
-                <h1 class="text-4xl font-bold mb-4" style="color: #1e3a8a;">Welcome back, <span id="userName">Maya User</span></h1>
-                <p class="text-lg mb-4">Your sacred signature is <span id="cosmicSignature">Ahau Spectral</span></p>
-                <button onclick="logout()" class="bg-gray-500 text-white px-6 py-2 rounded-xl hover:bg-gray-600 transition-colors float-right">
-                    Logout
-                </button>
-            </div>
-            
-            <!-- Main Features -->
-            <div class="grid md:grid-cols-2 gap-6 mb-8">
-                <div class="cosmic-card">
-                    <h2 class="text-2xl font-bold mb-4" style="color: #8b4513;">🌟 Your Cosmic Blueprint</h2>
-                    <p class="mb-4">Discover your complete personalized cosmic blueprint with 35+ spiritual elements</p>
-                    <button onclick="showCosmicBlueprint()" class="bg-purple-600 text-white px-6 py-3 rounded-xl hover:bg-purple-700 transition-colors">
-                        View Cosmic Blueprint
-                    </button>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 Welcome to Your Maya Dashboard</h1>
+            <p id="userGreeting">Loading your cosmic profile...</p>
+            <button onclick="logout()" style="float: right;">Logout</button>
+        </div>
+        
+        <div class="dashboard-card">
+            <h2>Your Cosmic Elements</h2>
+            <div class="features-grid">
+                <div class="feature-card" onclick="showCosmicBlueprint()">
+                    <h3>🔮 Cosmic Blueprint</h3>
+                    <p>Your complete Maya analysis</p>
                 </div>
-                
-                <div class="cosmic-card">
-                    <h2 class="text-2xl font-bold mb-4" style="color: #8b4513;">📜 Soul Contract</h2>
-                    <p class="mb-4">Access your sacred soul contract with origins, gifts, and destiny mission</p>
-                    <button onclick="generateDetailedSoulContract()" class="bg-orange-600 text-white px-6 py-3 rounded-xl hover:bg-orange-700 transition-colors">
-                        View Soul Contract
-                    </button>
+                <div class="feature-card" onclick="showSoulContract()">
+                    <h3>📜 Soul Contract</h3>
+                    <p>Your spiritual mission</p>
                 </div>
-            </div>
-            
-            <!-- Core Maya Elements -->
-            <div class="cosmic-card">
-                <h2 class="text-3xl font-bold text-center mb-8" style="color: #1e3a8a;">Your Core Maya Elements</h2>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                    <div class="element-bubble">
-                        <div class="text-3xl mb-2">🔸</div>
-                        <h4 class="font-bold text-sm" style="color: #1e3a8a;">Day Sign</h4>
-                        <p class="text-xs" style="color: #1e3a8a;" id="daySign">Ahau</p>
-                    </div>
-                    <div class="element-bubble">
-                        <div class="text-3xl mb-2">🎵</div>
-                        <h4 class="font-bold text-sm" style="color: #1e3a8a;">Galactic Tone</h4>
-                        <p class="text-xs" style="color: #1e3a8a;" id="galacticTone">Spectral</p>
-                    </div>
-                    <div class="element-bubble">
-                        <div class="text-3xl mb-2">🔥</div>
-                        <h4 class="font-bold text-sm" style="color: #1e3a8a;">Element</h4>
-                        <p class="text-xs" style="color: #1e3a8a;" id="element">Fire</p>
-                    </div>
-                    <div class="element-bubble">
-                        <div class="text-3xl mb-2">🏛️</div>
-                        <h4 class="font-bold text-sm" style="color: #1e3a8a;">Kin Number</h4>
-                        <p class="text-xs" style="color: #1e3a8a;" id="kinNumber">260</p>
-                    </div>
-                    <div class="element-bubble">
-                        <div class="text-3xl mb-2">🌟</div>
-                        <h4 class="font-bold text-sm" style="color: #1e3a8a;">Life Path</h4>
-                        <p class="text-xs" style="color: #1e3a8a;" id="lifePath">Spiritual Leader</p>
-                    </div>
+                <div class="feature-card" onclick="showDailyInsights()">
+                    <h3>🌅 Daily Insights</h3>
+                    <p>Today's cosmic guidance</p>
+                </div>
+                <div class="feature-card" onclick="showGuidanceRequest()">
+                    <h3>🙏 Spiritual Guidance</h3>
+                    <p>Ask for cosmic wisdom</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Modal for displaying content -->
-    <div id="elementModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50" onclick="closeModal(event)">
-        <div class="bg-white rounded-2xl p-8 max-w-4xl max-h-[90vh] overflow-y-auto m-4" onclick="event.stopPropagation()">
-            <div id="modalContent">
-                <!-- Dynamic content will be inserted here -->
-            </div>
-            <div class="text-center mt-6">
-                <button onclick="document.getElementById('elementModal').style.display='none'" class="bg-gray-500 text-white px-6 py-2 rounded-xl hover:bg-gray-600 transition-colors mr-4">
-                    Back to Dashboard
-                </button>
-                <button onclick="shareElement()" class="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition-colors">
-                    Share Element
-                </button>
-            </div>
-        </div>
-    </div>
-
+    
     <script>
-        // Authentication check
-        document.addEventListener('DOMContentLoaded', function() {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                window.location.href = '/';
-                return;
-            }
-        });
-
-        function showCosmicBlueprint() {
-            const content = `
-                <h2 class="text-3xl font-bold mb-6 text-center" style="color: #1e3a8a;">🌟 Your Complete Cosmic Blueprint</h2>
-                <div class="space-y-6">
-                    <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-xl">
-                        <h3 class="text-xl font-bold mb-3" style="color: #8b4513;">Soul Essence</h3>
-                        <p>You are an Ahau Spectral being, carrying the sacred fire energy of transformation. Your cosmic signature reveals a soul destined to illuminate the path for others through spiritual leadership and divine wisdom.</p>
-                    </div>
-                    <div class="bg-gradient-to-r from-orange-50 to-orange-100 p-6 rounded-xl">
-                        <h3 class="text-xl font-bold mb-3" style="color: #8b4513;">Divine Gifts</h3>
-                        <p>Your natural abilities include intuitive wisdom, healing energy, and the power to inspire others. You have a special connection to the fire element and solar consciousness.</p>
-                    </div>
-                    <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 p-6 rounded-xl">
-                        <h3 class="text-xl font-bold mb-3" style="color: #8b4513;">Sacred Mission</h3>
-                        <p>Your life purpose is to awaken others to their spiritual potential and guide them through transformation. You are here to bridge ancient wisdom with modern understanding.</p>
-                    </div>
-                </div>
-            `;
-            showModal(content);
-        }
-
-        function generateDetailedSoulContract() {
-            const content = `
-                <h2 class="text-3xl font-bold mb-6 text-center" style="color: #1e3a8a;">📜 Your Sacred Soul Contract</h2>
-                <div class="space-y-6">
-                    <div class="border-l-4 border-purple-500 pl-6">
-                        <h3 class="text-xl font-bold mb-3" style="color: #8b4513;">Soul Origins</h3>
-                        <p>Your soul carries the ancient lineage of Maya sun priests and spiritual teachers. You have incarnated many times as a guide and healer, always choosing to serve the highest good.</p>
-                    </div>
-                    <div class="border-l-4 border-orange-500 pl-6">
-                        <h3 class="text-xl font-bold mb-3" style="color: #8b4513;">Sacred Gifts</h3>
-                        <p>You possess the gift of spiritual sight, the ability to heal through energy, and the power to awaken others to their true nature. Your presence alone brings transformation.</p>
-                    </div>
-                    <div class="border-l-4 border-yellow-500 pl-6">
-                        <h3 class="text-xl font-bold mb-3" style="color: #8b4513;">Destiny Mission</h3>
-                        <p>You have contracted to be a beacon of light in times of darkness, teaching others about their cosmic heritage and helping humanity remember its connection to the stars.</p>
-                    </div>
-                </div>
-            `;
-            showModal(content);
-        }
-
-        function showModal(content) {
-            document.getElementById('modalContent').innerHTML = content;
-            document.getElementById('elementModal').style.display = 'flex';
-        }
-
-        function closeModal(event) {
-            if (event.target === event.currentTarget) {
-                document.getElementById('elementModal').style.display = 'none';
-            }
-        }
-
-        function shareElement() {
-            const text = "Check out my Maya Cosmic Blueprint from The Magic is You!";
-            const url = window.location.href;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Maya Cosmic Blueprint',
-                    text: text,
-                    url: url
-                });
-            } else {
-                navigator.clipboard.writeText(text + ' ' + url);
-                alert('Link copied to clipboard!');
-            }
-        }
-
-        function logout() {
-            localStorage.removeItem('token');
+        // Check authentication
+        const token = localStorage.getItem('maya_token');
+        const name = localStorage.getItem('maya_name') || 'Cosmic Soul';
+        
+        if (!token) {
+            alert('Please login first');
             window.location.href = '/';
+        } else {
+            document.getElementById('userGreeting').textContent = `Welcome back, ${name}. Your cosmic journey continues...`;
+        }
+        
+        function logout() {
+            localStorage.clear();
+            alert('Logged out successfully');
+            window.location.href = '/';
+        }
+        
+        function showCosmicBlueprint() {
+            alert('🔮 Your Cosmic Blueprint\n\nDay Sign: Ahau (Solar Lord)\nGalactic Tone: Spectral\nElement: Fire\nLife Path: Illuminator\n\nYour complete cosmic analysis awaits!');
+        }
+        
+        function showSoulContract() {
+            alert('📜 Your Soul Contract\n\nSoul Origins: You are a spiritual illuminator\nSacred Gifts: Leadership and wisdom\nDivine Mission: Guide others to their light\n\nYour sacred purpose is revealed!');
+        }
+        
+        function showDailyInsights() {
+            alert('🌅 Daily Cosmic Insights\n\nToday the cosmic energies align for transformation. Focus on inner wisdom and trust your intuition. The Maya calendar brings opportunities for spiritual growth.');
+        }
+        
+        function showGuidanceRequest() {
+            const question = prompt('Ask the Maya ancestors for guidance:');
+            if (question) {
+                alert('🙏 Cosmic Response\n\nThe ancestors hear your question: "' + question + '"\n\nGuidance: Trust the path that lights up your soul. Every challenge is a teacher, every joy a celebration of your divine nature.');
+            }
         }
     </script>
 </body>
