@@ -2,14 +2,21 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/basic.py",
+      "src": "api/minimal_index.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/api/basic.py"
+      "dest": "/api/minimal_index.py"
     }
-  ]
+  ],
+  "env": {
+    "PYTHONPATH": "/var/task"
+  }
 }
