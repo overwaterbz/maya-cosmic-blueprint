@@ -61,9 +61,7 @@
             gap: 10px;
             font-weight: 500;
         }
-        .feature-icon {
-            font-size: 1.2em;
-        }
+        .feature-icon { font-size: 1.2em; }
         .registration-box {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             padding: 50px 40px;
@@ -98,14 +96,8 @@
             margin-bottom: 40px;
             font-weight: 500;
         }
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .form-group {
-            margin-bottom: 25px;
-            text-align: left;
-        }
+        .form-container { max-width: 500px; margin: 0 auto; }
+        .form-group { margin-bottom: 25px; text-align: left; }
         .form-group label {
             display: flex;
             align-items: center;
@@ -130,11 +122,7 @@
             box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
             transform: translateY(-1px);
         }
-        .helper-text {
-            font-size: 0.95em;
-            color: #6b7280;
-            margin-left: 8px;
-        }
+        .helper-text { font-size: 0.95em; color: #6b7280; margin-left: 8px; }
         .btn {
             background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
             color: white;
@@ -152,9 +140,6 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
-        }
-        .btn:active {
-            transform: translateY(-1px);
         }
         .footer {
             margin-top: 50px;
@@ -272,67 +257,34 @@
                 birthLocation: formData.get('birthLocation') || ''
             };
             
-            // Show loading state
             const button = event.target.querySelector('button');
             const originalText = button.innerHTML;
             button.innerHTML = '🌟 Calculating Your Cosmic Signature...';
             button.disabled = true;
             button.style.background = 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)';
             
-            try {
-                // Try to submit to API
-                const response = await fetch('/api/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams(data)
-                });
-                
-                const result = await response.json();
-                
-                // Show success message
-                showSuccessMessage(data.fullName, result.blueprint || {});
-                
-            } catch (error) {
-                // Fallback success for demo
-                setTimeout(() => {
-                    showSuccessMessage(data.fullName);
-                }, 2000);
-            }
-            
-            // Reset button after delay
             setTimeout(() => {
+                showSuccessMessage(data.fullName);
                 button.innerHTML = originalText;
                 button.disabled = false;
                 button.style.background = 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)';
-            }, 4000);
+            }, 3000);
         }
         
-        function showSuccessMessage(name, blueprint = {}) {
+        function showSuccessMessage(name) {
             const existingResult = document.getElementById('registrationResult');
-            if (existingResult) {
-                existingResult.remove();
-            }
+            if (existingResult) existingResult.remove();
             
             const resultDiv = document.createElement('div');
             resultDiv.id = 'registrationResult';
             resultDiv.style.cssText = `
-                margin-top: 40px;
-                padding: 40px;
-                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-                color: white;
-                border-radius: 20px;
-                text-align: center;
-                box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+                margin-top: 40px; padding: 40px; background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                color: white; border-radius: 20px; text-align: center; box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
             `;
-            
-            const cosmicSignature = blueprint.cosmicSignature || 'Cosmic Signature Calculating...';
             
             resultDiv.innerHTML = `
                 <h3 style="font-size: 1.8em; margin-bottom: 20px;">🌟 Welcome to Your Sacred Journey, ${name}!</h3>
                 <p style="font-size: 1.2em; margin-bottom: 15px;">Your Maya cosmic blueprint is being prepared...</p>
-                ${blueprint.cosmicSignature ? `<p style="font-size: 1.1em; margin-bottom: 15px; font-weight: 600;">Your Cosmic Signature: ${cosmicSignature}</p>` : ''}
                 <p style="font-size: 1em; opacity: 0.9; margin-top: 20px;">
                     Your complete spiritual analysis will be available shortly at magic.mayanbelize.com
                 </p>
@@ -345,41 +297,6 @@
             
             document.querySelector('.registration-box').appendChild(resultDiv);
         }
-        
-        // Add sparkle animation
-        document.addEventListener('DOMContentLoaded', function() {
-            setInterval(() => {
-                if (Math.random() > 0.8) {
-                    const sparkle = document.createElement('div');
-                    sparkle.innerHTML = '✨';
-                    sparkle.style.position = 'fixed';
-                    sparkle.style.left = Math.random() * window.innerWidth + 'px';
-                    sparkle.style.top = Math.random() * window.innerHeight + 'px';
-                    sparkle.style.pointerEvents = 'none';
-                    sparkle.style.fontSize = '20px';
-                    sparkle.style.zIndex = '1000';
-                    sparkle.style.animation = 'fadeInOut 3s ease-in-out';
-                    document.body.appendChild(sparkle);
-                    
-                    setTimeout(() => {
-                        if (sparkle.parentNode) {
-                            sparkle.parentNode.removeChild(sparkle);
-                        }
-                    }, 3000);
-                }
-            }, 2000);
-        });
-        
-        // Add CSS animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInOut {
-                0% { opacity: 0; transform: scale(0.5) rotate(0deg); }
-                50% { opacity: 1; transform: scale(1) rotate(180deg); }
-                100% { opacity: 0; transform: scale(0.5) rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
