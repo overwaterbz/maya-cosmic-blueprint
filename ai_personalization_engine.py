@@ -16,8 +16,12 @@ import threading
 import queue
 from collections import defaultdict, deque
 
-# Initialize OpenAI client
-openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+# Initialize OpenAI client with error handling
+try:
+    openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+except Exception as e:
+    print(f"Warning: Failed to initialize OpenAI client: {e}")
+    openai_client = None
 
 class PersonalizationDepth(Enum):
     SURFACE = "surface"
